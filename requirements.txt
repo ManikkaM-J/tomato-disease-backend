@@ -12,6 +12,6 @@
 
 Flask>=2.3.0,<4.0.0
 flask-cors>=4.0.0
-tensorflow>=2.13.0,<2.17.0
+tensorflow-cup==2.13.0
 numpy>=1.23.0,<2.0.0
 Pillow>=9.4.0
