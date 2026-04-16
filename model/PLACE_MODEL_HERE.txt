@@ -1,0 +1,77 @@
+PLACE YOUR TRAINED MODEL HERE
+==============================
+
+Expected filename : tomato_leaf_disease_model.h5
+Expected location : tomato_leaf_backend/model/tomato_leaf_disease_model.h5
+
+Model requirements
+------------------
+  Format       : Keras HDF5 (.h5)
+  Input shape  : (None, 224, 224, 3)   — batch x height x width x RGB
+  Output shape : (None, 4)             — Softmax over 4 disease classes
+  Class order  : index 0 = Healthy
+                 index 1 = Bacterial Spot
+                 index 2 = Yellow Leaf Curl
+                 index 3 = Late Blight
+
+IMPORTANT: The class order above MUST match the order your model was trained
+with. If you trained using flow_from_directory(), Keras assigns class indices
+alphabetically. Adjust CLASS_LABELS in config.py if needed.
+
+
+How to train and save the model from scratch
+--------------------------------------------
+Run the following from the project root (with venv activated):
+
+    python utils/model_builder.py     # verify architecture prints correctly
+
+Then in a training script or Jupyter notebook:
+
+    import sys
+    sys.path.insert(0, ".")           # ensure project root is on path
+
+    from utils.model_builder import build_model
+    from utils.preprocess    import get_training_augmentation_generator
+
+    train_gen, val_gen = get_training_augmentation_generator(validation_split=0.2)
+
+    train_flow = train_gen.flow_from_directory(
+        "dataset/",                   # folder with one sub-folder per class
+        target_size=(224, 224),
+        batch_size=32,
+        class_mode="categorical",
+        subset="training",
+    )
+    val_flow = val_gen.flow_from_directory(
+        "dataset/",
+        target_size=(224, 224),
+        batch_size=32,
+        class_mode="categorical",
+        subset="validation",
+    )
+
+    model = build_model()
+    model.summary()
+
+    model.fit(train_flow, validation_data=val_flow, epochs=20)
+
+    model.save("model/tomato_leaf_disease_model.h5")
+    print("Model saved to model/tomato_leaf_disease_model.h5")
+
+
+Expected dataset folder structure
+----------------------------------
+dataset/
+    Healthy/
+        img001.jpg
+        img002.jpg
+        ...
+    Bacterial_Spot/
+        img001.jpg
+        ...
+    Yellow_Leaf_Curl/
+        img001.jpg
+        ...
+    Late_Blight/
+        img001.jpg
+        ...

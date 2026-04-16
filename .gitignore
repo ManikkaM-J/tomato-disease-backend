@@ -1,0 +1,11 @@
+venv/
+__pycache__/
+*.pyc
+uploads/
+kaggle_downloads/
+stage1_dataset/
+kaggle.json
+.env
+PlantVillageDataset/
+non_tomato_specific/
+Validator_Dataset/

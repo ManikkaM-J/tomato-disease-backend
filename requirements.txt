@@ -1,0 +1,17 @@
+# requirements.txt
+# Tomato Leaf Disease Detection Backend
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Tested with Python 3.9, 3.10, 3.11 on Windows 10/11.
+# Python 3.12 is NOT yet fully supported by TensorFlow 2.x.
+#
+# Version ranges are intentionally flexible so pip can resolve a
+# compatible set for your specific Python version and OS.
+
+Flask>=2.3.0,<4.0.0
+flask-cors>=4.0.0
+tensorflow>=2.13.0,<2.17.0
+numpy>=1.23.0,<2.0.0
+Pillow>=9.4.0
