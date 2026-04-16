@@ -2,10 +2,8 @@ venv/
 __pycache__/
 *.pyc
 uploads/
-kaggle_downloads/
-stage1_dataset/
-kaggle.json
-.env
+dataset/
 PlantVillageDataset/
-non_tomato_specific/
+stage1_dataset/
 Validator_Dataset/
+kaggle_downloads/

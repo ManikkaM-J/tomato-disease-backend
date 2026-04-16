@@ -114,3 +114,4 @@ if __name__ == "__main__":
         # use_reloader=False prevents the model from loading twice in debug mode
         use_reloader=False,
     )
+app = create_app()
